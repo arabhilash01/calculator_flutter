@@ -6,7 +6,7 @@ A new Flutter project.
 
 Inspiration
 
-image.png
+<img src="./assets/images/calculator.png" width="128"/>
 
 This project is a starting point for a Flutter application.
 
