@@ -5,7 +5,7 @@ A new Flutter project.
 ## Getting Started
 
 ## Inspiration
-# Yasir Ahmad Noori
+### Yasir Ahmad Noori
 
 https://dribbble.com/shots/17204599-Calculator-App-Mobile-application
 
