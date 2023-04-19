@@ -5,8 +5,9 @@ A new Flutter project.
 ## Getting Started
 
 Inspiration
-
-<img src="./assets/images/calculator.png" width="128"/>
+https://dribbble.com/shots/17204599-Calculator-App-Mobile-application
+Yasir Ahmad Noori
+<img src="./assets/images/calculator.png" width="300"/>
 
 This project is a starting point for a Flutter application.
 
