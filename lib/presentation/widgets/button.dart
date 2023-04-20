@@ -17,36 +17,46 @@ class KeyButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     bool _isOperator = ['+', '-', '/', 'X'].contains(name);
-    bool _isSpecial = ['c', '<-', '%'].contains(name);
+    bool _isSpecial = ['c', '<-', '%', '+/-'].contains(name);
     bool _isEqual = name == '=';
     return GestureDetector(
       onTap: () {
         if (_isOperator) {
+          _calculate(ref, name);
           ref
               .read(historyValueProvider.notifier)
               .update((state) => state + ref.read(operatorValueProvider) + ref.read(valueProvider));
-          _calculate(ref, name);
-          // ref.read(intermediateValueProvider.notifier).update((state) => int.parse(ref.read(valueProvider)));
+
           ref.read(valueProvider.notifier).state = '';
           ref.read(operatorValueProvider.notifier).update((state) => name);
         }
         if (_isSpecial) {
-          if(name=='c'){
-          ref.read(valueProvider.notifier).update((state) => '');
-          ref.read(historyValueProvider.notifier).update((state) => '');
-          ref.read(operatorValueProvider.notifier).update((state) => '');
-          ref.read(intermediateValueProvider.notifier).update((state) => 0);
+          if (name == 'c') {
+            ref.read(valueProvider.notifier).update((state) => '');
+            ref.read(historyValueProvider.notifier).update((state) => '');
+            ref.read(operatorValueProvider.notifier).update((state) => '');
+            ref.read(intermediateValueProvider.notifier).reset();
           }
-          
         }
         if (_isEqual) {
-          
+          //  _calculate(ref, name);
           ref.read(valueProvider.notifier).update((state) => ref.watch(intermediateValueProvider).toString());
         }
         if (!_isSpecial && !_isOperator && !_isEqual) ref.read(valueProvider.notifier).update((state) => state + name);
       },
       child: Container(
-        decoration: BoxDecoration(color: _getColor, borderRadius: BorderRadius.circular(20)),
+        decoration: BoxDecoration(
+          color: _getColor,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow:const [
+             BoxShadow(
+              color: Colors.white,
+              spreadRadius: 0.5,
+              blurRadius: 1,
+              offset: Offset(1, 1),
+            ),
+          ],
+        ),
         child: Center(
           child: Text(
             name,
@@ -74,22 +84,5 @@ class KeyButton extends ConsumerWidget {
 _calculate(WidgetRef ref, String operator) {
   final notifier = ref.read(intermediateValueProvider.notifier);
   final value = ref.watch(valueProvider);
-
-  switch (operator) {
-    case '+':
-      notifier.update((state) => state + int.parse(value));
-      print(int.parse(value));
-      print('intermediate value');
-      print(ref.read(intermediateValueProvider));
-      break;
-    case '-':
-      notifier.update((state) => state - int.parse(value));
-      break;
-    case 'X':
-      notifier.update((state) => state * int.parse(value));
-      break;
-    case '/':
-      notifier.update((state) => state ~/ int.parse(value));
-      break;
-  }
+  notifier.operator(operator, int.parse(value));
 }

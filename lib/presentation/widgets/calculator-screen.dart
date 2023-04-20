@@ -13,7 +13,6 @@ class CalculatorScreen extends ConsumerWidget {
     return Container(
       margin: EdgeInsets.only(top: 20),
       width: MediaQuery.of(context).size.width - 40,
-      // height: 250,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: BackgoundColors.primary),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -28,7 +27,7 @@ class CalculatorScreen extends ConsumerWidget {
               style: TextStyle(fontSize: 50),
             ),
             Text(
-              ref.watch(intermediateValueProvider).toString(),
+              ref.read(intermediateValueProvider).toString(),
               style: TextStyle(fontSize: 10),
             ),
           ],
