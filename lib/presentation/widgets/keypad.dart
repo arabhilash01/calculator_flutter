@@ -9,7 +9,7 @@ class Keypad extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(18.0),
+      padding: const EdgeInsets.all(25.0),
       child: GridView.count(
         crossAxisCount: 4,
         mainAxisSpacing: 10.0,
@@ -29,7 +29,7 @@ class Keypad extends StatelessWidget {
 
 List<Buttons> buttons = [
   Buttons(name: 'c', type: ButtonType.special),
-  Buttons(name: '<-', type: ButtonType.special),
+  Buttons(name: '+/-', type: ButtonType.special),
   Buttons(name: '%', type: ButtonType.special),
   Buttons(name: '/', type: ButtonType.operators),
   Buttons(name: '7'),
@@ -44,6 +44,7 @@ List<Buttons> buttons = [
   Buttons(name: '2'),
   Buttons(name: '3'),
   Buttons(name: '+', type: ButtonType.operators),
+  Buttons(name: '<-', type: ButtonType.special),
   Buttons(name: '0'),
   Buttons(name: '.'),
   Buttons(name: '=', type: ButtonType.operators),
